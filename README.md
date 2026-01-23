@@ -39,3 +39,9 @@ If you get the following error, ignore it.
 
 Open the `src-tauri/gen/ohos` within DevEcoStudio and run it.
 
+
+
+ ## Note
+
+ 1. `libentry.so` is a template library and you can ignore it.
+ 2. `RustAbility` will forward lifecycle automatically.
