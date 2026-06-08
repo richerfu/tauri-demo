@@ -29,17 +29,13 @@ napi-derive-ohos = "1.1"
 
 
 [patch.crates-io]
-wry = { git = "https://github.com/richerfu/wry", rev = "814340ecf52e638ca84f300e5753e623fd040bd3" }
-tao = { git = "https://github.com/richerfu/tao", branch = "feat-ohos-webview" }
 openharmony-ability = { git = "https://github.com/harmony-contrib/openharmony-ability.git" }
 openharmony-ability-derive = { git = "https://github.com/harmony-contrib/openharmony-ability.git" }
 
 
 tauri = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
 tauri-runtime = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
-tauri-utils = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony", features = [
-  "resources",
-] }
+tauri-utils = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
 tauri-macros = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
 tauri-runtime-wry = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
 
