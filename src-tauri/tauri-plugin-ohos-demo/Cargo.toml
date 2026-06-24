@@ -1,0 +1,21 @@
+[package]
+name = "tauri-plugin-ohos-demo"
+version = "0.1.0"
+authors = ["you"]
+description = "Example Tauri plugin that demonstrates an OHOS adaptation path."
+edition = "2021"
+rust-version = "1.77.2"
+exclude = ["/dist-js", "/guest-js", "/node_modules"]
+links = "tauri-plugin-ohos-demo"
+build = "build.rs"
+
+[lib]
+name = "tauri_plugin_ohos_demo"
+path = "src/lib.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+tauri = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony", default-features = false }
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }

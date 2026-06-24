@@ -1,0 +1,8 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = "Allows the OHOS demo plugin commands."
+permissions = [
+  "allow-platform-info",
+  "allow-echo",
+]
