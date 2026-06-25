@@ -1,13 +1,29 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/core";
+import {
+  echo as echoFromOhosDemo,
+  getPlatformInfo as getOhosDemoPlatformInfo,
+  type OhosDemoPlatformInfo,
+} from "../src-tauri/tauri-plugin-ohos-demo/guest-js";
 
 const greetMsg = ref("");
 const name = ref("");
+const pluginMessage = ref("hello from Vue");
+const pluginEcho = ref("");
+const pluginInfo = ref<OhosDemoPlatformInfo | null>(null);
 
 async function greet() {
   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
   greetMsg.value = await invoke("greet", { name: name.value });
+}
+
+async function loadPluginInfo() {
+  pluginInfo.value = await getOhosDemoPlatformInfo();
+}
+
+async function runPluginEcho() {
+  pluginEcho.value = await echoFromOhosDemo(pluginMessage.value);
 }
 </script>
 
@@ -33,6 +49,23 @@ async function greet() {
       <button type="submit">Greet</button>
     </form>
     <p>{{ greetMsg }}</p>
+
+    <section class="plugin-demo">
+      <h2>OHOS plugin example</h2>
+      <div class="row">
+        <button type="button" @click="loadPluginInfo">Load plugin info</button>
+      </div>
+      <p v-if="pluginInfo">
+        {{ pluginInfo.platform }} / {{ pluginInfo.runtime }} /
+        NativeAbility: {{ pluginInfo.usesNativeAbility ? "yes" : "no" }}
+      </p>
+
+      <form class="row" @submit.prevent="runPluginEcho">
+        <input v-model="pluginMessage" placeholder="Plugin message..." />
+        <button type="submit">Plugin echo</button>
+      </form>
+      <p>{{ pluginEcho }}</p>
+    </section>
   </main>
 </template>
 
@@ -86,6 +119,7 @@ async function greet() {
 .row {
   display: flex;
   justify-content: center;
+  gap: 5px;
 }
 
 a {
@@ -135,6 +169,10 @@ button {
 
 #greet-input {
   margin-right: 5px;
+}
+
+.plugin-demo {
+  margin-top: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {

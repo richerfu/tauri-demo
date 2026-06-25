@@ -4173,6 +4173,7 @@ dependencies = [
  "serde_json",
  "tauri",
  "tauri-build",
+ "tauri-plugin-ohos-demo",
  "tauri-plugin-opener",
 ]
 
@@ -4204,6 +4205,15 @@ dependencies = [
  "tauri-utils 2.8.3",
  "toml 0.9.12+spec-1.1.0",
  "walkdir",
+]
+
+[[package]]
+name = "tauri-plugin-ohos-demo"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "tauri",
+ "tauri-plugin",
 ]
 
 [[package]]
