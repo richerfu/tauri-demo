@@ -1,0 +1,6 @@
+{
+  "name": "libtauri_demo_lib.so",
+  "types": "./Index.d.ts",
+  "version": "1.0.0",
+  "description": "Rust N-API exports for ArkTS callback examples."
+}

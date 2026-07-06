@@ -12,6 +12,9 @@ const name = ref("");
 const pluginMessage = ref("hello from Vue");
 const pluginEcho = ref("");
 const pluginInfo = ref<OhosDemoPlatformInfo | null>(null);
+const arktsMessage = ref("hello from frontend");
+const arktsFunctionResult = ref("");
+const arktsTsfnResult = ref("");
 
 async function greet() {
   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -24,6 +27,28 @@ async function loadPluginInfo() {
 
 async function runPluginEcho() {
   pluginEcho.value = await echoFromOhosDemo(pluginMessage.value);
+}
+
+async function callArktsFunction() {
+  arktsFunctionResult.value = "calling...";
+  try {
+    arktsFunctionResult.value = await invoke("call_arkts_function_from_frontend", {
+      message: arktsMessage.value,
+    });
+  } catch (error) {
+    arktsFunctionResult.value = `error: ${String(error)}`;
+  }
+}
+
+async function callArktsTsfn() {
+  arktsTsfnResult.value = "calling...";
+  try {
+    arktsTsfnResult.value = await invoke("call_arkts_tsfn_from_frontend", {
+      message: arktsMessage.value,
+    });
+  } catch (error) {
+    arktsTsfnResult.value = `error: ${String(error)}`;
+  }
 }
 </script>
 
@@ -65,6 +90,20 @@ async function runPluginEcho() {
         <button type="submit">Plugin echo</button>
       </form>
       <p>{{ pluginEcho }}</p>
+    </section>
+
+    <section class="arkts-demo">
+      <h2>ArkTS callback example</h2>
+      <form class="row" @submit.prevent="callArktsFunction">
+        <input v-model="arktsMessage" placeholder="ArkTS message..." />
+        <button type="submit">ArkTS Function</button>
+      </form>
+      <p>{{ arktsFunctionResult }}</p>
+
+      <div class="row">
+        <button type="button" @click="callArktsTsfn">ArkTS TSFN</button>
+      </div>
+      <p>{{ arktsTsfnResult }}</p>
     </section>
   </main>
 </template>
@@ -171,7 +210,8 @@ button {
   margin-right: 5px;
 }
 
-.plugin-demo {
+.plugin-demo,
+.arkts-demo {
   margin-top: 2rem;
 }
 

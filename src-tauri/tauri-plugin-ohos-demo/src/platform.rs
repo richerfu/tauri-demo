@@ -13,22 +13,22 @@ pub(crate) fn platform_name() -> &'static str {
     "ohos"
 }
 
-#[cfg(all(not(target_env = "ohos"), target_os = "android"))]
+#[cfg(target_os = "android")]
 pub(crate) fn platform_name() -> &'static str {
     "android"
 }
 
-#[cfg(all(not(target_env = "ohos"), target_os = "ios"))]
+#[cfg(target_os = "ios")]
 pub(crate) fn platform_name() -> &'static str {
     "ios"
 }
 
-#[cfg(all(not(target_env = "ohos"), target_os = "macos"))]
+#[cfg(target_os = "macos")]
 pub(crate) fn platform_name() -> &'static str {
     "macos"
 }
 
-#[cfg(all(not(target_env = "ohos"), target_os = "windows"))]
+#[cfg(target_os = "windows")]
 pub(crate) fn platform_name() -> &'static str {
     "windows"
 }
