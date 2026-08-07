@@ -2730,7 +2730,7 @@ dependencies = [
 [[package]]
 name = "openharmony-ability"
 version = "0.3.0"
-source = "git+https://github.com/harmony-contrib/openharmony-ability.git#6c52bb44164ea2d6d7f573c090a75142f0dbd2ef"
+source = "git+https://github.com/harmony-contrib/openharmony-ability.git?rev=295a276a699ba2352addc69b8cacb6acd3be6ab1#295a276a699ba2352addc69b8cacb6acd3be6ab1"
 dependencies = [
  "futures-channel",
  "http",
@@ -2747,7 +2747,7 @@ dependencies = [
 [[package]]
 name = "openharmony-ability-derive"
 version = "0.3.0"
-source = "git+https://github.com/harmony-contrib/openharmony-ability.git#6c52bb44164ea2d6d7f573c090a75142f0dbd2ef"
+source = "git+https://github.com/harmony-contrib/openharmony-ability.git?rev=295a276a699ba2352addc69b8cacb6acd3be6ab1#295a276a699ba2352addc69b8cacb6acd3be6ab1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3998,7 +3998,7 @@ dependencies = [
 [[package]]
 name = "tao"
 version = "0.35.3"
-source = "git+https://github.com/richerfu/tao?branch=feat-ohos-webview#2e06a9b25a2c27a54c2272ee24ad7b27d094877a"
+source = "git+https://github.com/richerfu/tao?branch=feat-ohos-webview#9d51be24a7189f80407f12c322c95fccde98e215"
 dependencies = [
  "bitflags 2.11.0",
  "block2",
@@ -4049,7 +4049,7 @@ dependencies = [
 [[package]]
 name = "tao-macros"
 version = "0.1.3"
-source = "git+https://github.com/richerfu/tao?branch=feat-ohos-webview#2e06a9b25a2c27a54c2272ee24ad7b27d094877a"
+source = "git+https://github.com/richerfu/tao?branch=feat-ohos-webview#9d51be24a7189f80407f12c322c95fccde98e215"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4065,7 +4065,7 @@ checksum = "61c41af27dd6d1e27b1b16b489db798443478cef1f06a660c96db617ba5de3b1"
 [[package]]
 name = "tauri"
 version = "2.8.5"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "anyhow",
  "bytes",
@@ -4118,7 +4118,7 @@ dependencies = [
 [[package]]
 name = "tauri-build"
 version = "2.4.1"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "anyhow",
  "cargo_toml",
@@ -4140,7 +4140,7 @@ dependencies = [
 [[package]]
 name = "tauri-codegen"
 version = "2.4.0"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "base64 0.22.1",
  "brotli",
@@ -4180,7 +4180,7 @@ dependencies = [
 [[package]]
 name = "tauri-macros"
 version = "2.4.0"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "heck 0.5.0",
  "proc-macro2",
@@ -4241,7 +4241,7 @@ dependencies = [
 [[package]]
 name = "tauri-runtime"
 version = "2.8.0"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "cookie",
  "dpi",
@@ -4266,7 +4266,7 @@ dependencies = [
 [[package]]
 name = "tauri-runtime-wry"
 version = "2.8.1"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "gtk",
  "http",
@@ -4292,7 +4292,7 @@ dependencies = [
 [[package]]
 name = "tauri-utils"
 version = "2.7.0"
-source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#a1cba91da7f59d009d2af3ce33a44fd3fab6c187"
+source = "git+https://github.com/richerfu/tauri?branch=feat%2Fopen-harmony#c818cc1de4eae70a14273cf8a4f81283987a42b7"
 dependencies = [
  "anyhow",
  "brotli",
@@ -5694,7 +5694,7 @@ checksum = "9edde0db4769d2dc68579893f2306b26c6ecfbe0ef499b013d731b7b9247e0b9"
 [[package]]
 name = "wry"
 version = "0.55.1"
-source = "git+https://github.com/richerfu/wry#9d95eddc6690383551d4c8fe273e94e19c907831"
+source = "git+https://github.com/richerfu/wry#ae8b21b592ff65074381cb8a71f0fd1bb787fac0"
 dependencies = [
  "base64 0.22.1",
  "block2",

@@ -29,9 +29,11 @@ napi-ohos = { version = "1.1" }
 napi-derive-ohos = "1.1"
 
 
+# 固定 openharmony-ability 到 295a276a（2026-06-30，#64；c6c4c9a #67 移除 webview
+# feature 之前的最后可用状态）。wry/tauri/tao fork 的 manifest 已声明同 rev
 [patch.crates-io]
-openharmony-ability = { git = "https://github.com/harmony-contrib/openharmony-ability.git" }
-openharmony-ability-derive = { git = "https://github.com/harmony-contrib/openharmony-ability.git" }
+openharmony-ability = { git = "https://github.com/harmony-contrib/openharmony-ability.git", rev = "295a276a699ba2352addc69b8cacb6acd3be6ab1" }
+openharmony-ability-derive = { git = "https://github.com/harmony-contrib/openharmony-ability.git", rev = "295a276a699ba2352addc69b8cacb6acd3be6ab1" }
 
 
 tauri = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony" }
