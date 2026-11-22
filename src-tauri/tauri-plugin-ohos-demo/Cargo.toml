@@ -15,7 +15,7 @@ path = "src/lib.rs"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
-tauri = { git = "https://github.com/richerfu/tauri", branch = "feat/open-harmony", default-features = false }
+tauri = { git = "https://github.com/richerfu/tauri", branch = "feat-openharmony", default-features = false }
 
 [build-dependencies]
-tauri-plugin = { version = "2", features = ["build"] }
+tauri-plugin = { git = "https://github.com/richerfu/tauri", branch = "feat-openharmony", features = ["build"] }

@@ -1,0 +1,84 @@
+{
+  "module": {
+    "name": "entry_mobile",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": ["phone","tablet"],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.SET_WINDOW_TRANSPARENT"
+      }
+      // The desktop-only conditional below declares WINDOW_TOPMOST,
+      // LOCK_WINDOW_CURSOR and PRINT for the desktop form.
+      // PUBLISH_AGENT_REMINDER is declared unconditionally (normal
+      // system_grant); the agent-powered-reminder capability itself
+      // requires the AGC open-capability application on phones, tablets
+      // and PC/2in1 (Profile regeneration + manual re-signing after
+      // approval) regardless of the declaration.
+      // READ_PASTEBOARD is deliberately NOT declared: it is a restricted
+      // permission (system_basic/user_grant) and a fresh scaffold's
+      // default signing profile carries no ACL for it, which breaks
+      // install. An app that reads the clipboard must add it here itself
+      // (reason/usedScene + signing-profile ACL; non-PC/2in1 devices
+      // additionally need the AGC restricted-permission review and only
+      // special scenarios pass — prefer the PasteButton secure component,
+      // which needs no permission). See the project-root README.md for
+      // the durable copy of this guidance (the entry deviceTypes rewrite
+      // drops json5 comments on the first build).
+      ,
+      {
+        "name": "ohos.permission.PREPARE_APP_TERMINATE"
+      },
+      {
+        "name": "ohos.permission.PRIVACY_WINDOW"
+      },
+      {
+        "name": "ohos.permission.PUBLISH_AGENT_REMINDER"
+      }
+    ]
+  }
+}

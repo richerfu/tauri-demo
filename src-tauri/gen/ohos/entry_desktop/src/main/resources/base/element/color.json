@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "menubar_bg",
+      "value": "#F5F5F5"
+    },
+    {
+      "name": "menubar_text",
+      "value": "#333333"
+    },
+    {
+      "name": "menubar_text_disabled",
+      "value": "#999999"
+    },
+    {
+      "name": "menubar_item_hover",
+      "value": "#EBEBEB"
+    },
+    {
+      "name": "menubar_item_active",
+      "value": "#E0E0E0"
+    }
+  ]
+}

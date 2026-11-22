@@ -1,0 +1,23 @@
+{
+  "name": "entry_mobile",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos-rs/ability": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-app-control": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-app-control-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-files": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-files-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-menu": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-menu-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-permission": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-permission-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-resource": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-resource-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-statusbar": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-statusbar-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-url": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-url-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-webview": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-webview-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-window": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-window-1.0.0-beta.5.har",
+    "@tauri/app": "file:../tauri",
+    "@ohos-rs/ability-plugin-clipboard": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-clipboard-1.0.0-beta.5.har",
+    "@ohos-rs/ability-plugin-system-state": "file:../../../../../openharmony-ability/dist/ohos-rs-ability-plugin-system-state-1.0.0-beta.5.har"
+  }
+}

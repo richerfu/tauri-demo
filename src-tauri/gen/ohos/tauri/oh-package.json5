@@ -1,0 +1,10 @@
+{
+  "name": "@tauri/app",
+  "version": "2.0.0",
+  "description": "Tauri API for OpenHarmony",
+  "main": "src/main/ets/index.ets",
+  "author": "Tauri Programme within The Commons Conservancy",
+  "license": "Apache-2.0 OR MIT",
+  "dependencies": {},
+  "type": "module"
+}

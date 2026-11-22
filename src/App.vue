@@ -1,11 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { invoke } from "@tauri-apps/api/core";
 import {
   echo as echoFromOhosDemo,
   getPlatformInfo as getOhosDemoPlatformInfo,
   type OhosDemoPlatformInfo,
 } from "../src-tauri/tauri-plugin-ohos-demo/guest-js";
+
+interface RegressionCheck {
+  name: string;
+  ok: boolean;
+  detail: string;
+}
+
+interface RegressionReport {
+  passed: number;
+  failed: number;
+  checks: RegressionCheck[];
+}
 
 const greetMsg = ref("");
 const name = ref("");
@@ -15,9 +27,11 @@ const pluginInfo = ref<OhosDemoPlatformInfo | null>(null);
 const arktsMessage = ref("hello from frontend");
 const arktsFunctionResult = ref("");
 const arktsTsfnResult = ref("");
+const regressionReport = ref<RegressionReport | null>(null);
+const frontendChecks = ref<RegressionCheck[]>([]);
+const dialogProbeResult = ref("");
 
 async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
   greetMsg.value = await invoke("greet", { name: name.value });
 }
 
@@ -50,11 +64,73 @@ async function callArktsTsfn() {
     arktsTsfnResult.value = `error: ${String(error)}`;
   }
 }
+
+async function runDialogProbe() {
+  dialogProbeResult.value = "opening...";
+  try {
+    dialogProbeResult.value = await invoke("trigger_dialog_message_probe");
+  } catch (error) {
+    dialogProbeResult.value = `error: ${String(error)}`;
+  }
+}
+
+async function runRegressionSuite() {
+  const fe: RegressionCheck[] = [];
+  try {
+    const g = await invoke<string>("greet", { name: "OHOS" });
+    fe.push({ name: "ipc-greet", ok: g.includes("OHOS"), detail: g });
+  } catch (e) {
+    fe.push({ name: "ipc-greet", ok: false, detail: String(e) });
+  }
+
+  try {
+    const info = await getOhosDemoPlatformInfo();
+    pluginInfo.value = info;
+    const echoed = await echoFromOhosDemo("auto-probe");
+    pluginEcho.value = echoed;
+    fe.push({
+      name: "js-ohos-demo-plugin",
+      ok: echoed.includes("auto-probe"),
+      detail: `${info.platform}/${info.runtime} echo=${echoed}`,
+    });
+  } catch (e) {
+    fe.push({ name: "js-ohos-demo-plugin", ok: false, detail: String(e) });
+  }
+
+  try {
+    localStorage.setItem("tauri_ohos_probe", "ok");
+    const val = localStorage.getItem("tauri_ohos_probe");
+    fe.push({ name: "webview-dom-storage", ok: val === "ok", detail: `val=${val}` });
+  } catch (e) {
+    fe.push({ name: "webview-dom-storage", ok: false, detail: String(e) });
+  }
+
+  try {
+    const report = await invoke<RegressionReport>("run_ohos_regression_checks");
+    regressionReport.value = report;
+  } catch (e) {
+    fe.push({ name: "rust-regression-suite", ok: false, detail: String(e) });
+  }
+
+  await new Promise((r) => setTimeout(r, 300));
+  const evalVal = (window as unknown as Record<string, unknown>).__wryEvalProbe;
+  fe.push({
+    name: "wry-eval-js-side-effect",
+    ok: evalVal === "ok",
+    detail: `__wryEvalProbe=${String(evalVal)}`,
+  });
+
+  frontendChecks.value = fe;
+}
+
+onMounted(() => {
+  void runRegressionSuite();
+});
 </script>
 
 <template>
   <main class="container">
-    <h1>Welcome to Tauri + Vue</h1>
+    <h1>Welcome to Tauri + Vue (OpenHarmony)</h1>
 
     <div class="row">
       <a href="https://vite.dev" target="_blank">
@@ -67,7 +143,30 @@ async function callArktsTsfn() {
         <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
       </a>
     </div>
-    <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
+
+    <section class="regression-demo">
+      <h2>OHOS Regression Suite</h2>
+      <div class="row">
+        <button type="button" @click="runRegressionSuite">Re-run Checks</button>
+        <button type="button" @click="runDialogProbe">Test Dialog Prompt</button>
+      </div>
+      <p v-if="dialogProbeResult">{{ dialogProbeResult }}</p>
+      <p v-if="regressionReport">
+        Rust checks: {{ regressionReport.passed }} passed / {{ regressionReport.failed }} failed
+      </p>
+      <ul class="check-list">
+        <li v-for="c in frontendChecks" :key="c.name" :class="c.ok ? 'pass' : 'fail'">
+          [{{ c.ok ? "PASS" : "FAIL" }}] {{ c.name }}: {{ c.detail }}
+        </li>
+        <li
+          v-for="c in regressionReport?.checks ?? []"
+          :key="c.name"
+          :class="c.ok ? 'pass' : 'fail'"
+        >
+          [{{ c.ok ? "PASS" : "FAIL" }}] {{ c.name }}: {{ c.detail }}
+        </li>
+      </ul>
+    </section>
 
     <form class="row" @submit.prevent="greet">
       <input id="greet-input" v-model="name" placeholder="Enter a name..." />
@@ -117,6 +216,24 @@ async function callArktsTsfn() {
   filter: drop-shadow(0 0 2em #249b73);
 }
 
+.check-list {
+  list-style: none;
+  padding: 0 16px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 760px;
+  margin: 12px auto;
+}
+
+.check-list li.pass {
+  color: #1a7f37;
+}
+
+.check-list li.fail {
+  color: #cf222e;
+  font-weight: 600;
+}
 </style>
 <style>
 :root {
@@ -137,7 +254,7 @@ async function callArktsTsfn() {
 
 .container {
   margin: 0;
-  padding-top: 10vh;
+  padding: 4vh 16px 8vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,8 +262,8 @@ async function callArktsTsfn() {
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4.5em;
+  padding: 1em;
   will-change: filter;
   transition: 0.75s;
 }
@@ -210,9 +327,10 @@ button {
   margin-right: 5px;
 }
 
+.regression-demo,
 .plugin-demo,
 .arkts-demo {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -234,5 +352,4 @@ button {
     background-color: #0f0f0f69;
   }
 }
-
 </style>

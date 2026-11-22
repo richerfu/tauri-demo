@@ -1,9 +1,9 @@
 {
   "app": {
     "bundleName": "com.ranger.tauri_demo",
-    "vendor": "",
-    "versionCode": 1,
-    "versionName": "1.0.0",
+    "vendor": "ranger",
+    "versionCode": 1000,
+    "versionName": "0.1.0",
     "icon": "$media:layered_image",
     "label": "$string:app_name"
   }

@@ -6,6 +6,11 @@
   "permissions": [
     "core:default",
     "opener:default",
+    "os:default",
+    "clipboard-manager:default",
+    "dialog:default",
+    "log:default",
+    "window-state:default",
     "ohos-demo:default"
   ]
 }

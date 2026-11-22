@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "tauri-demo"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "tauri-demo"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "tauri-demo"
+    },
+    {
+      "name": "reason_print",
+      "value": "Print documents"
+    }
+  ]
+}
